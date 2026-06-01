@@ -1,0 +1,194 @@
+<!DOCTYPE  html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1 Live - Premium Racing Content</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">F1<span>Live</span></div>
+      <ul class="nav-links">
+        <li data-page="f1" class="active"><a href="#f1">F1</a></li>
+        <li data-page="cricket"><a href="#cricket">Cricket</a></li>
+        <li data-page="ufc"><a href="#ufc">UFC</a></li>
+        <li data-page="soccer"><a href="#soccer">Soccer</a></li>
+        <li data-page="contact"><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- F1 Page -->
+    <section id="f1-page" class="page active">
+      <div class="hero">
+        <h1>Formula 1 Live Streaming</h1>
+        <p>Watch every race, qualifying and practice session live</p>
+      </div>
+      
+      <div class="featured-stream">
+        <h2>Live Now</h2>
+        <div class="video-container">
+          <div id="main-video">
+            <!-- iframe stream-->
+          <iframe id="player" marginheight="0" marginwidth="0" src="https://pooembed.eu/embed/f1/2026/monaco/fp1" scrolling="no" allowfullscreen="yes" allow="encrypted-media; picture-in-picture;" width="100%" height="100%" frameborder="0" style="position:absolute;"></iframe>
+             <!-- iframe stream -->
+          <!-- Player overlay: centered spinner and bottom-left/right controls -->
+             <div class="player-overlay" aria-hidden="false">
+               <div class="spinner" role="status" aria-label="Loading"></div>
+
+               <div class="controls-bottom">
+                 <div class="controls-right">
+                   <button class="icon-btn pip-btn" aria-label="Picture in Picture">
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                       <path d="M19 7H5c-1.1 0-2 .9-2 2v6h2V9h14V7z" fill="white" />
+                       <path d="M21 11v6c0 1.1-.9 2-2 2h-6v-2h6v-6h2z" fill="white" />
+                     </svg>
+                   </button>
+                   <button class="icon-btn fs-btn" aria-label="Fullscreen">
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                       <path d="M7 14H5v5h5v-2H7v-3zM19 5h-5v2h3v3h2V5zM7 5h3V3H5v5h2V5zM19 14h-2v3h-3v2h5v-5z" fill="white" />
+                     </svg>
+                   </button>
+                 </div>
+               </div>
+             </div>
+        </div>
+      </div>
+
+
+      
+    </div>
+
+    
+
+      <div class="upcoming-races">
+        <h2>Highlights Races</h2>
+        <div class="race-grid" id="race-schedule">
+          <!-- Race cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Cricket Page -->
+    <section id="cricket-page" class="page">
+      <div class="hero cricket-hero">
+        <h1>Cricket Live Streams</h1>
+        <p>Watch international matches and tournaments</p>
+      </div>
+      <div class="content-placeholder">
+        <h2>Coming Soon</h2>
+        <p>Our cricket coverage is being expanded. Check back soon for live streams.</p>
+      </div>
+    </section>
+
+    <!-- UFC Page -->
+    <section id="ufc-page" class="page">
+      <div class="hero ufc-hero">
+        <h1>UFC Live Events</h1>
+        <p>Watch every fight night and PPV event</p>
+      </div>
+      <div class="content-placeholder">
+        <h2>Coming Soon</h2>
+        <p>Our UFC coverage is being expanded. Check back soon for live streams.</p>
+      </div>
+    </section>
+
+    <!-- Soccer Page -->
+    <section id="soccer-page" class="page">
+      <div class="hero soccer-hero">
+        <h1>Soccer Matches Live</h1>
+        <p>Premier League, La Liga, Champions League and more</p>
+      </div>
+      
+      <div class="featured-stream">
+        <h2>Live Now</h2>
+        <div class="video-container">
+          <div id="main-video">
+            <iframe id="player" marginheight="0" marginwidth="0" src="https://pooembed.eu/embed/mens-international-friendly/2026-06-01/bul-mne" scrolling="no" allowfullscreen="yes" allow="encrypted-media; picture-in-picture;" width="100%" height="100%" frameborder="0" style="position:absolute;"></iframe>
+             <div class="player-overlay" aria-hidden="false">
+               <div class="spinner" role="status" aria-label="Loading"></div>
+
+               <div class="controls-bottom">
+                 <div class="controls-right">
+                   <button class="icon-btn pip-btn" aria-label="Picture in Picture">
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                       <path d="M19 7H5c-1.1 0-2 .9-2 2v6h2V9h14V7z" fill="white" />
+                       <path d="M21 11v6c0 1.1-.9 2-2 2h-6v-2h6v-6h2z" fill="white" />
+                     </svg>
+                   </button>
+                   <button class="icon-btn fs-btn" aria-label="Fullscreen">
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                       <path d="M7 14H5v5h5v-2H7v-3zM19 5h-5v2h3v3h2V5zM7 5h3V3H5v5h2V5zM19 14h-2v3h-3v2h5v-5z" fill="white" />
+                     </svg>
+                   </button>
+                 </div>
+               </div>
+             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact-page" class="page">
+      <div class="contact-container">
+        <h1>Contact Us</h1>
+        <p>Have questions or feedback? Reach out to our team.</p>
+        
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+        <div id="form-message" class="hidden"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">F1<span>Live</span></div>
+      <div class="footer-links">
+        <ul>
+          <li><a href="#f1">F1</a></li>
+          <li><a href="#cricket">Cricket</a></li>
+          <li><a href="#ufc">UFC</a></li>
+          <li><a href="#soccer">Soccer</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <a href="#" class="social-icon">FB</a>
+        <a href="#" class="social-icon">TW</a>
+        <a href="#" class="social-icon">IG</a>
+        <a href="#" class="social-icon">YT</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 F1Live. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+  
