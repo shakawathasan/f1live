@@ -27,12 +27,76 @@ const races = [
 ];
 
 
-const observer = new MutationObserver(() => {
-    const ad = document.getElementById('dontfoid');
-    if (ad) ad.remove();
+const adSelectors = ['[id^="ad"]','[class*="ad-"]','[class*="ads"]','.ads','.adsbox','iframe[src*="ads"]','iframe[src*="doubleclick"]','iframe[src*="googlesyndication"]','script[src*="ads"]','ins.adsbygoogle'];
+
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(m => {
+    m.addedNodes && m.addedNodes.forEach(node => {
+      if (!(node instanceof HTMLElement)) return;
+      for (const sel of adSelectors) {
+        try {
+          if (node.matches && node.matches(sel)) {
+            node.remove();
+            return;
+          }
+        } catch (e) {}
+        if (node.querySelector && node.querySelector(sel)) {
+          node.querySelectorAll(sel).forEach(el => el.remove());
+        }
+      }
+    });
+  });
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
+
+function removeAdElements() {
+  try {
+    const nodes = document.querySelectorAll(adSelectors.join(','));
+    nodes.forEach(n => n.remove());
+  } catch (e) {
+    // ignore selector errors in older browsers
+  }
+}
+
+function detectAdBlocker(timeout = 150) {
+  return new Promise(resolve => {
+    try {
+      const bait = document.createElement('div');
+      bait.className = 'adsbox ad-banner adunit';
+      bait.style.width = '1px';
+      bait.style.height = '1px';
+      bait.style.position = 'absolute';
+      bait.style.left = '-9999px';
+      document.body.appendChild(bait);
+
+      setTimeout(() => {
+        let blocked = false;
+        try {
+          const style = window.getComputedStyle ? getComputedStyle(bait) : null;
+          blocked = (style && style.getPropertyValue('display') === 'none') || (bait.offsetParent === null) || (bait.offsetHeight === 0);
+        } catch (e) {
+          // if reading properties throws, assume blocked
+          blocked = true;
+        }
+        bait.remove();
+        resolve(blocked);
+      }, timeout);
+    } catch (e) {
+      resolve(false);
+    }
+  });
+}
+
+function showAdblockNotice() {
+  if (document.getElementById('adblock-banner')) return;
+  const banner = document.createElement('div');
+  banner.id = 'adblock-banner';
+  banner.className = 'adblock-banner';
+  banner.innerHTML = '<span>Ad blocker detected — some content may be blocked.</span><button id="adblock-dismiss">Dismiss</button>';
+  document.body.appendChild(banner);
+  document.getElementById('adblock-dismiss').addEventListener('click', () => banner.remove());
+}
 
 
 // Client-side routing
@@ -275,6 +339,16 @@ function initPlayerControls() {
     const fsBtn = container.querySelector('.fs-btn');
     const iframe = container.querySelector('iframe');
     const mainVideoDiv = container.querySelector('#main-video');
+    const spinner = container.querySelector('.spinner');
+    
+    // Hide spinner after a short delay (video loaded)
+    if (spinner) {
+      setTimeout(() => spinner.classList.add('hidden'), 500);
+      // Also hide spinner on iframe load if available
+      if (iframe) {
+        iframe.addEventListener('load', () => spinner.classList.add('hidden'));
+      }
+    }
     
     // Picture in Picture
     if (pipBtn) {
@@ -317,5 +391,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initVideoPlayer();
   initPlayerControls();
   initContactForm();
+
+  // Detect adblock and remove ad-like elements
+  detectAdBlocker().then(blocked => {
+    if (blocked) {
+      showAdblockNotice();
+    }
+    removeAdElements();
+  });
 });
   
